@@ -5,14 +5,9 @@ class DataBase(object):
         self.conn = connect(dbname + '.db')
         self.cursor = self.conn.cursor()
 
-    def createTable(self, tbname, attributes = {}):
-        command = 'CREATE TABLE IF NOT EXISTS ' + tbname + '('
+    def createTable(self, tbname, attributes = ()):
+        command = 'CREATE TABLE IF NOT EXISTS ' + tbname + '(' + str(attributes)[1:] + ';'
 
-        for key, value in attributes.items():
-            command = command + key + ' ' + value + ','
-            
-        command = command + ');'
-        
         self.cursor.execute(command)
         self.conn.commit()
         
@@ -31,4 +26,4 @@ class DataBase(object):
         return self.cursor.execute('SELECT ' + att + ' FROM ' + table)
 
 db1 = DataBase('test')
-db1.createTable('Student', {'name':'varchar', 'age':'integer'})
+db1.createTable('Student', ('name VARCHAR', 'age INTEGER'))
