@@ -27,4 +27,8 @@ class DataBase(object):
         self.cursor.execute(command)
         self.conn.commit() 
 
+    def readTable(self, att, table):
+        return self.cursor.execute('SELECT ' + att + ' FROM ' + table)
+
 db1 = DataBase('test')
+db1.createTable('Student', {'name':'varchar', 'age':'integer'})
