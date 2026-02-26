@@ -36,10 +36,16 @@ class DataBase(object):
         new_values.append(valueid)
         self.cursor.execute(command, new_values)
         self.conn.commit()
+    
+    def deleteItemTable(self, table, id, id_value):
+        command = 'DELETE FROM ' + table + f' WHERE {id} = ?;'
+        print(command)
+        self.cursor.execute(command, (id_value))
+        self.conn.commit()
 
 db1 = DataBase('test')
 db1.createTable('Student', ('name VARCHAR(50)', 'age INTEGER'))
 db1.insertInTable('Student',('ana', 15))
 
-print(db1.readTable('*','Student'))
 db1.updateTable('Student', ('name', 'age'), ['bia', 29], 'name', 'vitor')
+db1.deleteItemTable('Student', 'name', 'bia')
