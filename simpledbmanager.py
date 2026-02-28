@@ -42,10 +42,3 @@ class DataBase(object):
         print(command)
         self.cursor.execute(command, (id_value))
         self.conn.commit()
-
-db1 = DataBase('test')
-db1.createTable('Student', ('name VARCHAR(50)', 'age INTEGER'))
-db1.insertInTable('Student',('ana', 15))
-
-db1.updateTable('Student', ('name', 'age'), ['bia', 29], 'name', 'vitor')
-db1.deleteItemTable('Student', 'name', 'bia')
