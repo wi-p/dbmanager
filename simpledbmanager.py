@@ -41,5 +41,4 @@ class DataBase(object):
         self.cursor.execute('DELETE FROM ' + table + f' WHERE {id} = ?', (id_value,))
         self.conn.commit()
 
-db1 = DataBase('test')
-db1.deleteItemTable('Student', 'name', 'bruba')
+
