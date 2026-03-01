@@ -38,7 +38,8 @@ class DataBase(object):
         self.conn.commit()
     
     def deleteItemTable(self, table, id, id_value):
-        command = 'DELETE FROM ' + table + f' WHERE {id} = ?;'
-        print(command)
-        self.cursor.execute(command, (id_value))
+        self.cursor.execute('DELETE FROM ' + table + f' WHERE {id} = ?', (id_value,))
         self.conn.commit()
+
+db1 = DataBase('test')
+db1.deleteItemTable('Student', 'name', 'bruba')
