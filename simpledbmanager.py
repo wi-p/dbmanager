@@ -16,10 +16,8 @@ class DataBase(object):
         self.cursor.execute(command)
         self.conn.commit()
         
-    def insertInTable(self, table, values):
-        command = 'INSERT INTO ' + table + ' VALUES (' + ((len(values) -1) * '?,') +  '?);'
-
-        self.cursor.execute(command, values)
+    def insertInTable(self, table, values = []):
+        self.cursor.execute('INSERT INTO ' + table + ' VALUES (' + ((len(values) -1) * '?,') +  '?);', values)
         self.conn.commit() 
 
     def readTable(self, att, table):
@@ -40,5 +38,3 @@ class DataBase(object):
     def deleteItemTable(self, table, id, id_value):
         self.cursor.execute('DELETE FROM ' + table + f' WHERE {id} = ?', (id_value,))
         self.conn.commit()
-
-
